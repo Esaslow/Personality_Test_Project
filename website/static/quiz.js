@@ -91,6 +91,7 @@ $(document).ready(function(){
         const df = await $.ajax('/reccomend');
         $('.GetNextQuestion').hide()
         $('#Graph1').show()
+        $('#Button_Tab').hide()
         //$('#scatter-button').click(async function(){
         console.log('scatter')
         const d = await $.ajax('/plot');
