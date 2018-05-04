@@ -88,3 +88,17 @@
     background: #4CAF50; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
+#introtxt{
+  border: #035a03 solid;
+  padding: 10px;
+  margin: 10px;
+  background-color: #0000ff14;
+
+}
+.trait{
+  padding: 10px;
+  margin: 10px;
+  border: 1px dashed;
+  background-color: #5600ff42;
+  border-radius: 10px;
+}
