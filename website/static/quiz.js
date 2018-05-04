@@ -150,7 +150,7 @@ $(document).ready(function(){
                           }
       //print out the end of tree string
       $('#'+model_string+' .Question').text(next_question.question)
-      $('#'+model_string+' .slidecontainer').text(next_question.question)
+      $('#'+model_string+' .slidecontainer').hide()
       //Update the Model Number & string
       model_number = Number(model_number) + 1
       $('.NumberModelsRemaining').text('Traits Remaining = '+(5-model_number).toString() )
