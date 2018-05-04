@@ -16,6 +16,7 @@ $(document).ready(function(){
   $('#Graph2').hide()
   $('.slider_text').hide()
   $('.NumberModelsRemaining').hide()
+  $('.Button_Tab').hide()
   //$ Looks for a tage on a page
   //async makes it asyncrnous
   $('#Startquiz').click(async function(){
@@ -28,6 +29,7 @@ $(document).ready(function(){
     $('#Startquiz').hide()
     $('#intro').hide()
     $('.GetNextQuestion').show()
+    $('.Button_Tab').show()
     $('.slider_val').text((25).toString())
     $('.NumberModelsRemaining').text('Traits Remaining = '+(5-model_number).toString() )
     $('#model0 .Question').text(response.question)
