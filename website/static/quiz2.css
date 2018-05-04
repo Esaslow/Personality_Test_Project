@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Gugi');
+body {
+    background-color: #cccccc;
+}
+
+img {
+    height: 150px;
+    width: 250px;
+    padding: 25px;
+    margin: 10px;
+}
+
+li {
+    font-family: monospace;
+}
+
+h1 {
+    font-family: 'Gugi', cursive;
+    color: red;
+    background-color: yellow;
+    border: 3px dashed green;
+    margin: 25px;
+    padding: 25px;
+}
+
+#controls {
+    background-color: #dbffff;
+    border: 3px dashed green;
+    margin: 25px;
+    padding: 25px;
+}
+#label{
+  border: 1px dashed green;
+  background-color: gray;
+  color: white;
+  margin: 5px;
+  padding: 1px;
+  height: 25px;
+}
+#GetNextQuestion{
+  margin: 5px;
+  padding: 5px;
+  height: 25px;
+}
+
+/* label {
+    display: inline-block;
+    width: 100px;
+}
+
+input {
+    background-color: tomato;
+    border: 1px solid red;
+    width: 200px;
+    ;
+} */
+
+#Graph1, #Graph2{
+  width: 700px;
+  height: 600px;
+  border: 2px double tomato;
+  padding: 50;
+  background-color: #dbfffe;
+  margin: 50;
+}
+
+
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 300px;
+    height: 15px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    padding: 2px;
+    margin: 30px;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+.Question{
+  padding: 5px;
+  margin: 2px;
+  font-size: 30px;
+  background-color: #ff00003b;
+}
+.label{
+  padding: 5px;
+  margin: 2px;
+}
+.GetNextQuestion{
+  padding: 5px;
+  margin: 10px;
+  background-color: white;
+}
+.slider_text,.slider_val{
+  color: blue;
+}
+.NumberModelsRemaining{
+  background-color: #ff000063;
+  margin: 5px;
+  padding: 4px;
+}
