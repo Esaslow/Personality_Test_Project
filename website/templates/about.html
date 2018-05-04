@@ -1,0 +1,251 @@
+<html>
+
+<link rel="stylesheet" href="/static/about.css" />
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <title>About</title>
+</head>
+
+<body>
+
+    <h1>About Page</h1>
+    <ul>
+      <li><a href = "/about"> About</a></li>
+      <li><a href = "/quiz">Quiz</a> </li>
+
+    </ul>
+
+    <h1> The Science Behind the Personality Assesment </h1>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h3> Exploring the IPIP-NEO 300 questions Dataset</h3>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-sm">
+        I was able to find a reputable source online for the IPIP-NEO
+          dataset <a href="https://osf.io/tbmh5/"> here.</a>
+
+          This dataset contains personality questions from over 150,000 people,
+          and my goal was to identify the most important questions.
+          There where a few steps to doing this, and below I explain the
+           machine learning I applied to this dataset.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h3> Running PCA on the dataset for EDA</h3>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+
+        Principle component analysis allows me to take the
+        dataset and find the most important components.
+        This is done by by looking at the axis where there exists
+       the highest variance in the dataset.  This is easily
+       done and can give some insight into which questions
+       separate out users the most.  This can also be done on
+       specific sex’s and this allows me to better understand
+       what questions split people from the same sex the most.
+       Below is a table containing the top 15 questions which split
+       people of the same sex.  As well, it is possible to split out by
+       age and look at the overlap of the most important questions based on
+       age categories.  This could be very beneficial to a business but also
+       contains a lot of information.
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <img src='/static/images/split_By_Sex.jpg' style="width: 600px; padding: 0 15px; float: left;"
+      class="img-fluid" alt="Responsive image">
+    </div>
+  </div>
+</div>
+
+     <div class="container">
+     <div class="row">
+       <div class="col-sm">
+         <h3>Looking at correlations between Questions:</h3>
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-sm">
+         The next interesting thing to look at is the correlation
+         between answer in independent questions. This allows me to
+         see hidden signal that exists between different facets of the
+         personalities. By looking at this, I quickly understood that
+         it is possible to inference more than one specific character
+         traits by looking at just one question. Below is a plot that
+         shows the questions that have the highest (and the lowest)
+         correlations between them. There is some incredibly useful information
+         contained in here, but generally this concept will be used later on to
+         understand how to build a decision tree.
+
+        This is incredible useful to start to begin to visualize the underlying
+        correlations that exist within this dataset. For purposes of easy understanding,
+         I only included questions that had either a high correlation coef or very low
+         correlation coef.  In my modeling, I included all features as this was just for
+         visualization purposes.
+         Another thing to notice here is that some of these questions seem like they
+         should have a low correlation yet they have a surprisingly high correlation.
+         This is due to the fact that the data set is not graded in a black and white
+         format.  Some of the questions are reverse score which can lead to some of the
+         correlations being higher than expected.  That said, this became an obstacle later
+         on when trying to go through and actively score the data while traversing a decision
+         tree
+
+       </div>
+         <div class="col-sm">
+
+          <img id='image2'
+            style="width: 600px; padding: 0 15px; float: right;"
+            src="/static/images/corr.jpg"
+            alt="Correlations between questions">
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+        <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h3>
+              Percentile that each user falls into for a specific character trait
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <p style="margin-top: 20px;">
+              This dataset if very interesting because the way that it is graded is
+              by looking at where a specific person falls on the spectrum of personality.
+              That is for each trait in the big 5 personality theory, each person’s results
+              depend where they fall into the distribution of other people.  Because of this it
+              does not make sense to say ‘This person is open’ but rather ‘This person is more open that 80% of people’
+
+              This can be a very difficult and tedious calculation but thankfully we have computers
+              that can help to make this easier.  Lets start by taking a look at one of these distributions
+              to better understand how this classification system is working using this image.
+
+
+
+              <img style="padding: 0 15px; float: left;" id='image3' src="/static/images/hist.jpg" alt="Histogram of users percentile">
+
+              I put vertical bars +- 2 standard deviations.  Looking at this image,
+              we could see that if someone’s scores ended up being < 125 for the openness questions,
+              we would define them as a closed person while a score greater than 240 would definitely
+              define them as an open person.  With this is mind, one can begin to understand how the percentile
+              that someone falls into could be seen as their classification based on their personality traits.  Furthermore,
+              since there are 5 traits that all have similar distributions to this, we can use in each of the five traits, the
+              percentile that someone falls into, as their classification for that specific character trait.  Beyond this point,
+              I will be using the percentile as the classification for users to build a decision tree.
+           </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+              <h3> Building a decision tree to predict percentile </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <p>
+               By looking at percentile, I effectively transformed this data into
+               a uniform distribution which allows me to fairly accurate predictions
+               on the trait the user falls into.  By training a model that requires 6 questions,
+               I can minimize the mean absolute error to about 12%.  Adding more questions here will effectively lower this error,
+               but for the time being I am less worried about this.
+
+               To begin, I trained a model that was used to predict a specific
+               characteristic trait.  For example, this could be openness, conscientiousness
+               or others.  Each of these models have similar mean absolute error and high predictability
+               power.  As well, since I am training a basic decision tree, it is possible to save the tree
+               from the model and use this later in prediction.  Below is an example of this tree with only 2 splits
+
+               <img id='image4' style="padding: 0 15px; float: right;" src="/static/images/tree.jpg" alt="descision tree">
+
+               In this tree, each node refers to a specific
+               question and the resulting split is based on
+               the users answer.  This is pretty frickin cool
+               if you ask me.  As well, there is additional
+               information that is contained in each of the nodes
+               including the Mean Squared Error and number.
+               In the version of the game that I built, this is
+               identified and given to the user.  By then asking
+               the user at each of the splits to answer the question
+               of the split, we can effectively traverse the tree and
+               move towards identifying the specific traits that each
+               user exhibits.  Obviously, the more questions that are
+               asked imply a higher accuracy but this can be changed
+               based on user preference or test giver preference.
+
+             </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <h3> Recommender System </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <p>
+                Now that the user has answered a certain number
+                of questions that are used to predict their
+                personality traits.  Since I have a full data set
+                of other users answers to the same questions,
+                I take all the users answers to the questions that
+                where answered by the quiz taker and find the
+                difference between the new answers and the other
+                users answers.  By then taking the mean of the
+                most similar users,
+                <img id='image5' style="padding: 0 15px; float: left;" src="/static/images/rec_error.jpg" alt="descision tree">
+                I can effectively find where
+                the new user lies within the facets of the Big 5
+                Personality traits and show them these results.
+                Initially, one of the important characteristics
+                is to better understand how many users I need to
+                average to get the best results.  Therefore, I
+                tested the reconstruction error with averaging a
+                different number of users.  By running this on 500
+                users each time, I was able to identify the optimum
+                number of closest users to average was in the range of
+                25 – 35.  This was done by inspecting the plots below of
+                the error from the recommender system.
+                <img id='image6' style="padding: 0 15px; float: left;" src="/static/images/mean_err.jpg" alt="descision tree">
+                By inspecting these plots, I was able to gain
+                confidence in my recommender system and better
+                understand how to utilize the information from this.
+                By then putting all of these parts together, I am able
+                to achieve the desired results
+              </p>
+          </div>
+        </div>
+       </div>
+
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+
+</html>

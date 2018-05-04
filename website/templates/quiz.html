@@ -1,0 +1,147 @@
+<html>
+<!-- <link rel="stylesheet" href="/static/about.css" /> -->
+<head>
+    <link rel="stylesheet" href="/static/quiz.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <title>Elliotts Personality Quiz</title>
+</head>
+
+<body>
+    <img src="https://wisdmlabs.com/site/wp-content/uploads/2013/12/quiz-banner.jpg" />
+    <ul>
+      <li><a href="/about">About</a></li>
+      <li><a href="/quiz">Quiz</a></li>
+    </ul>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h3>Machine Learning for Personality Assesment</h3>
+            <h4><a href="#" class="text-primary">Using Descision trees and a Reccomender system</a></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <label id='intro'>Welcome to the quiz game, press the start quiz button to begin</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <label id ='Q'></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+            <button id='Startquiz'>Start_quiz </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+        <div id='model0'>
+          <div class="shadow-none p-3 mb-5 bg-light rounded">
+          <div class='Question'></div>
+            <div class="slidecontainer">
+            <label class='label'> Very Inaccurate </label>
+            <input type="range" min="1" max="50" value="25" class="slider" id="myRange">
+            <label class='label'> Very Accurate </label>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class='model' id='model1'>
+            <div class="shadow-none p-3 mb-5 bg-light rounded">
+            <div class='Question'></div>
+              <div class="slidecontainer">
+              <label class='label'> Very Inaccurate </label>
+              <input type="range" min="1" max="50" value="25" class="slider" id="myRange">
+              <label class='label'> Very Accurate </label>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-sm">
+          <div id='model2'>
+            <div class="shadow-none p-3 mb-5 bg-light rounded">
+            <div class='Question'></div>
+              <div class="slidecontainer">
+              <label class='label'> Very Inaccurate </label>
+              <input type="range" min="1" max="50" value="25" class="slider" id="myRange">
+              <label class='label'> Very Accurate </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div id='model3'>
+            <div class="shadow-none p-3 mb-5 bg-light rounded">
+            <div class='Question'></div>
+              <div class="slidecontainer">
+              <label class='label'> Very Inaccurate </label>
+              <input type="range" min="1" max="50" value="25" class="slider" id="myRange">
+              <label class='label'> Very Accurate </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class='model' id='model4'>
+            <div class="shadow-none p-3 mb-5 bg-light rounded">
+            <div class='Question'></div>
+              <div class="slidecontainer">
+              <label class='label'> Very Inaccurate </label>
+              <input type="range" min="1" max="50" value="25" class="slider" id="myRange">
+              <label class='label'> Very Accurate </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='Button_Tab'>
+      <div class="row">
+        <div class="col-sm">
+
+          <button id='next_question' class='GetNextQuestion'> Next Question </button>
+          <span id='slider_txt' class="slider_text">Slider Val = </span>
+          <span class="slider_val"></span>
+          <span class='spacer'>||</span>
+            <span class='NumberModelsRemaining'></span>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="shadow-none p-3 mb-5 bg-light rounded">
+          <div id ='Graph1'> </div>
+          </div>
+          </div>
+          <div class="col-sm">
+            <div class="shadow-none p-3 mb-5 bg-light rounded">
+            <div id = 'Graph2'> </div>
+          </div>
+        <div>
+      </div>
+    </div>
+
+
+
+    <div id ='Graph1'> </div>
+
+    <div id = 'Graph2'> </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- put plotly into the app  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.35.2/plotly.min.js"></script>
+    <script src="/static/quiz.js"></script>
+    <script src="/static/slidebar.js"></script>
+</body>
+
+</html>
