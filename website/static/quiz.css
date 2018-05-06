@@ -1,8 +1,9 @@
 .Button_Tab {
   background-color: #6400e81a;
-  border: 4px solid #0e4a0e;
   padding: 20px;
   margin: 10px;
+  border: 4px solid;
+  border-radius: 10px;
 }
 .Question{
   border: .5px dashed;
@@ -42,6 +43,10 @@
 }
 .slidecontainer{
   background-color: #6400e81a;
+
+  width: 100%;
+  border: .5px dashed;
+  border-radius: 10px;
 }
 .Question{
   font-size: 30px;
