@@ -11,6 +11,7 @@ $(document).ready(function(){
   $('#model2').hide()
   $('#model3').hide()
   $('#model4').hide()
+  $('#sexlabel').hide()
   $('.GetNextQuestion').hide()
   $('#Graph1').hide()
   $('#Graph2').hide()
@@ -20,14 +21,25 @@ $(document).ready(function(){
   //$ Looks for a tage on a page
   //async makes it asyncrnous
   $('#Startquiz').click(async function(){
-    console.log('Button was clicked');
-    const response = await $.ajax('/Startquiz',{})
+    $('#sexlabel').show()
+    $('#Startquiz').hide()
+    $('#intro').hide()
+    $('#sexlabel').click(async function(){
+
+    const sex = parseFloat($('#sex').val());
+    console.log('sex '+sex);
+    const data = {sex}
+    const response = await $.ajax('/Startquiz',{
+      data: JSON.stringify(data),
+      method: "post",
+      contentType: "application/json"
+    })
     console.log('response',response)
     $('#model0').show()
     $('.slider_text').show()
     $('.NumberModelsRemaining').show()
-    $('#Startquiz').hide()
-    $('#intro').hide()
+
+
     $('.GetNextQuestion').show()
     $('.Button_Tab').show()
     $('.slider_val').text((25).toString())
@@ -39,6 +51,7 @@ $(document).ready(function(){
     $('#'+model_string+' .slider')[0].oninput = function(){
       $('.slider_val').text(this.value)
     }
+  })
   })
 
   $(' .GetNextQuestion').click(async function(){
