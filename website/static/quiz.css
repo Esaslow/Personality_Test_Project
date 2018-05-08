@@ -108,3 +108,22 @@
   background-color: #5600ff42;
   border-radius: 10px;
 }
+#sex_txt{
+  padding:10px;
+  border: dashed 2px rebeccapurple;
+  border-radius: 10px;
+}
+#sex{
+  padding: 10px;
+  border: solid .5px;
+  margin: 5px;
+}
+#sex_button{
+  margin:10px;
+  padding:3px;
+}
+#instructions{
+  margin: 10px;
+  padding:5px;
+  
+}

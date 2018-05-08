@@ -8,7 +8,7 @@ from Model.src import game
 from Model.src import unpickle
 from Model.src import Reccomend
 
-def load_model():
+def load_model(filepath = 'website/Model/data/4QUestionModel'):
     print('Loading data...')
     file_path = 'website/Model/data/4QUestionModel'
 
@@ -39,10 +39,26 @@ def version():
 # Square a number
 
 quiz = None
-@app.route('/Startquiz', methods = ['GET'])
+@app.route('/Startquiz', methods = ['POST'])
 def load():
+    req = request.get_json()
+    if req['sex'] == 1:
+        print('Male')
+        filepath = 'website/Model/data/4QUestionModelMale'
+    if req['sex'] == 2:
+        print('Female')
+        filepath = 'website/Model/data/4QUestionModelFemale'
+    global long_key, questions, grading_Key,\
+    keys2trait, Trait_dict_keys, Trait_dict_questions,\
+    graded_df, percentile_df, traits_df,\
+    models, Traits, quiz
+
+    long_key, questions, grading_Key,\
+    keys2trait, Trait_dict_keys, Trait_dict_questions,\
+    graded_df, percentile_df, traits_df,\
+    models, Traits,quiz = load_model(filepath)
     print('request recieved')
-    global quiz
+
     quiz = game.Quiz(questions)
     quiz.play_game(models[0],long_key,questions,Traits[0])
     question, flag = quiz.get_question()
@@ -139,5 +155,5 @@ if __name__ == '__main__':
     keys2trait, Trait_dict_keys, Trait_dict_questions,\
     graded_df, percentile_df, traits_df,\
     models, Traits,quiz = load_model()
-    print(Traits)
+    #print(Traits)
     app.run(host ='0.0.0.0', port = 3333, debug = True)

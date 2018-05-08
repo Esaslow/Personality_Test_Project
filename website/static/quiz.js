@@ -24,10 +24,11 @@ $(document).ready(function(){
     $('#sexlabel').show()
     $('#Startquiz').hide()
     $('#intro').hide()
-    $('#sexlabel').click(async function(){
+    $('#sex_button').click(async function(){
 
     const sex = parseFloat($('#sex').val());
     console.log('sex '+sex);
+    $('#sexlabel').hide()
     const data = {sex}
     const response = await $.ajax('/Startquiz',{
       data: JSON.stringify(data),
